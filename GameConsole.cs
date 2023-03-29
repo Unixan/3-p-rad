@@ -2,26 +2,27 @@
 {
     internal class GameConsole
     {
-        private Board _board;
+        private readonly Board _board;
         public GameConsole(Board board)
         {
             _board = board;
         }
         public void Show()
         {
+            Console.Clear();
             Console.WriteLine(@$"  a b c
   ┌─┬─┬─┐
- 1│{GetOccupiedBy(0)}│{GetOccupiedBy(1)}│{GetOccupiedBy(2)}│
+ 1│{GetChar(0)}│{GetChar(1)}│{GetChar(2)}│
   ├─┼─┼─┤
- 2│{GetOccupiedBy(3)}│{GetOccupiedBy(4)}│{GetOccupiedBy(5)}│
+ 2│{GetChar(3)}│{GetChar(4)}│{GetChar(5)}│
   ├─┼─┼─┤
- 3│{GetOccupiedBy(6)}│{GetOccupiedBy(7)}│{GetOccupiedBy(8)}│
+ 3│{GetChar(6)}│{GetChar(7)}│{GetChar(8)}│
   └─┴─┴─┘");
         }
-        public string GetOccupiedBy(int index)
+        public string GetChar(int index)
         {
             var square = _board.Squares[index];
-            return square.Unchecked() ? " " : square.Player() ? "X" : "O";
+            return square.IsEmpty() ? " " : square.Player() ? "X" : "O";
         }
     }
 }

@@ -2,20 +2,24 @@
 {
     internal class Square
     {
-        private int _occupied;
-
-        public Square()
+        private int _content;
+        
+        public bool IsEmpty()
         {
-            _occupied = 0;
-        }
-        public bool Unchecked()
-        {
-            return _occupied == 0;
+            return _content == 0;
         }
 
         public bool Player()
         {
-            return _occupied == 1;
+            return _content == 1;
+        }
+
+        public void Mark(bool isPlayer1)
+        {
+            if (IsEmpty())
+            {
+                _content = isPlayer1 ? 1 : 2;
+            }
         }
     }
 }
